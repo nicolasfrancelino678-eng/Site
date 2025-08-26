@@ -3,42 +3,54 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Meu Site</title>
+  <title>Contador</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background: linear-gradient(135deg, #1e90ff, #00bfff);
-      color: white;
       margin: 0;
       padding: 0;
+      background: black;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
     }
-    header {
-      background: rgba(0,0,0,0.3);
-      padding: 20px;
+
+    h1 {
       font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    #contador {
+      font-size: 1.8rem;
       font-weight: bold;
-    }
-    main {
-      padding: 40px;
-    }
-    footer {
-      background: rgba(0,0,0,0.3);
-      padding: 15px;
-      font-size: 0.9rem;
     }
   </style>
 </head>
 <body>
-  <header>
-    🚀 Bem-vindo ao meu site!
-  </header>
-  <main>
-    <h1>Olá, mundo!</h1>
-    <p>Este é o meu primeiro site no GitHub Pages.</p>
-  </main>
-  <footer>
-    Feito com ❤️ e hospedado no GitHub Pages
-  </footer>
+  <h1>Contador desde 4 de agosto</h1>
+  <div id="contador">Carregando...</div>
+
+  <script>
+    function atualizarContador() {
+      const inicio = new Date("2025-08-04T00:00:00");
+      const agora = new Date();
+      const diff = agora - inicio;
+
+      const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutos = Math.floor((diff / (1000 * 60)) % 60);
+      const segundos = Math.floor((diff / 1000) % 60);
+
+      document.getElementById("contador").innerText =
+        `${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos`;
+    }
+
+    setInterval(atualizarContador, 1000);
+    atualizarContador();
+  </script>
 </body>
-  </html>
+</html>
