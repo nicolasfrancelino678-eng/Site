@@ -3,54 +3,62 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contador</title>
+  <title>I'm waiting</title>
   <style>
     body {
       background-color: black;
       color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
       font-family: Arial, sans-serif;
       text-align: center;
-      margin: 0;
-      padding: 0;
     }
-    .contador {
+    #contador {
       font-size: 2em;
-      margin-top: 20%;
+      margin-bottom: 20px;
     }
-    .frase {
-      font-size: 1.5em;
+    iframe {
       margin-top: 20px;
-    }
-    audio {
-      margin-top: 20px;
+      border-radius: 10px;
     }
   </style>
 </head>
 <body>
-  <div class="contador" id="contador"></div>
-  <div class="frase">I'll wait for you</div>
-  <audio controls autoplay loop>
-    <source src="https://docs.google.com/uc?export=download&id=1N82yYbVZaiSc8tW6YyH8Lk2UnJ0M4QmW" type="audio/mp3">
-    Your browser does not support the audio element.
-  </audio>
+  <div id="contador"></div>
+  <p>I'll wait for you</p>
+
+  <!-- Player do YouTube -->
+  <iframe width="300" height="150"
+    src="https://www.youtube.com/embed/SmK9LHHE1B8?autoplay=0&loop=1&playlist=SmK9LHHE1B8"
+    title="YouTube video player"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen>
+  </iframe>
 
   <script>
+    // Data inicial: 4 de agosto de 2025 às 00:00
+    const dataInicial = new Date("Aug 4, 2025 00:00:00").getTime();
+
     function atualizarContador() {
-      const inicio = new Date("2024-08-04T00:00:00");
-      const agora = new Date();
-      const diferenca = agora - inicio;
+      const agora = new Date().getTime();
+      const diferenca = agora - dataInicial;
 
       const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
-      const horas = Math.floor((diferenca / (1000 * 60 * 60)) % 24);
-      const minutos = Math.floor((diferenca / (1000 * 60)) % 60);
-      const segundos = Math.floor((diferenca / 1000) % 60);
+      const horas = Math.floor((diferenca % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutos = Math.floor((diferenca % (1000 * 60 * 60)) / (1000 * 60));
+      const segundos = Math.floor((diferenca % (1000 * 60)) / 1000);
 
-      document.getElementById("contador").textContent =
+      document.getElementById("contador").innerText =
         `${dias}d ${horas}h ${minutos}m ${segundos}s`;
     }
 
-    setInterval(atualizarContador, 1000);
     atualizarContador();
+    setInterval(atualizarContador, 1000); // atualiza a cada segundo
   </script>
 </body>
 </html>
