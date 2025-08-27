@@ -11,21 +11,45 @@
       background: black;
       color: white;
       font-family: Arial, sans-serif;
-      text-align: center;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       height: 100vh;
+      text-align: center;
+      gap: 20px;
     }
 
     #contador {
       font-size: 2rem;
       font-weight: bold;
     }
+
+    .frase {
+      font-size: 1.2rem;
+      color: #ccc;
+    }
+
+    iframe {
+      border-radius: 12px;
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
   <div id="contador">Carregando...</div>
+  <div class="frase">I'll wait for you</div>
+
+  <!-- Player de música do YouTube -->
+  <iframe width="300" height="170"
+    src="https://www.youtube.com/embed/SmK9LHHE1B8"
+    title="YouTube video player"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen>
+  </iframe>
+
+  <div class="frase">👉 Aqui vai a segunda frase 👈</div>
 
   <script>
     function atualizarContador() {
@@ -39,7 +63,7 @@
       const segundos = Math.floor((diff / 1000) % 60);
 
       document.getElementById("contador").innerText =
-        `${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos`;
+        `${dias}d ${horas}h ${minutos}m ${segundos}s`;
     }
 
     setInterval(atualizarContador, 1000);
